@@ -33,8 +33,11 @@ class MyCollectionController extends Controller
 
     public function allCollection()
     {
-        $my = MyCollection::where('user_id', Auth::user()->id)->with('users', 'groups')->get();
-        dd($my);
-        return view('collection.index');
+        $groups = ListGroup::where('user_id', Auth::user()->id)
+                        ->with('users')->get();
+        
+        $collections = MyCollection::where('user_id', Auth::user()->id)->with('listings')->get();
+        
+        return view('collection.index', compact('groups', 'collections'));
     }
 }
