@@ -16,6 +16,7 @@ Route::group(['prefix' => '/admin', 'roles' => ['admin'], 'middleware' => ['auth
 	//List Group
 	Route::get('/group', 'ListGroupController@create')->name('group.create');
 	Route::post('/group', 'ListGroupController@store')->name('group.store');
+	Route::get('/group/search', 'ListGroupController@search')->name('group.search');
 
 	//collection
 	Route::get('/collection', 'MyCollectionController@alLCollection')->name('collection.all');

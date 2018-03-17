@@ -27,4 +27,15 @@ class ListGroupController extends Controller
         return redirect('admin')->with('status', 'List Group added !');
 
     }
+
+    public function search(Request $request)
+    {
+        if($request->has('search')){
+            $listgroup = ListGroup::search($request->search)
+                ->paginate(6);
+        }else{
+            $listgroup = ListGroup::paginate(6);
+        }
+        return view('group.search',compact('listgroup'));
+    }
 }
